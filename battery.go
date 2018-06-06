@@ -34,11 +34,15 @@ func GetBatteryInfo(uevent string) (int, bool, error) {
 		switch tokens[0] {
 		case "POWER_SUPPLY_CHARGE_FULL_DESIGN":
 			fullDesign, _ = strconv.ParseFloat(tokens[1], 64)
+		case "POWER_SUPPLY_ENERGY_FULL_DESIGN":
+			fullDesign, _ = strconv.ParseFloat(tokens[1], 64)
 		case "POWER_SUPPLY_CHARGE_FULL":
 			full, _ = strconv.ParseFloat(tokens[1], 64)
-		case "POWER_SUPPLY_ENERGY_NOW":
-			now, _ = strconv.ParseFloat(tokens[1], 64)
+		case "POWER_SUPPLY_ENERGY_FULL":
+			full, _ = strconv.ParseFloat(tokens[1], 64)
 		case "POWER_SUPPLY_CHARGE_NOW":
+			now, _ = strconv.ParseFloat(tokens[1], 64)
+		case "POWER_SUPPLY_ENERGY_NOW":
 			now, _ = strconv.ParseFloat(tokens[1], 64)
 		case "POWER_SUPPLY_STATUS":
 			present = tokens[1] != "Discharging"
